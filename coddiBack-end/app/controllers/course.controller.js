@@ -1,5 +1,5 @@
 const Course = require("../models/course.model");
-
+const mongoose = require("mongoose");
 exports.createCourse = (req, res) => {
   const course = new Course({
     title: req.body.title,
@@ -24,8 +24,27 @@ exports.createCourse = (req, res) => {
     });
 };
 exports.getCourses = (req, res) => {
-  Course.find()
-    .select("title description")
+  Course.aggregate([
+    {
+      $lookup: {
+        from: "questions",
+        localField: "questions",
+        foreignField: "_id",
+        as: "questions",
+      },
+    },
+    {
+      $lookup: {
+        from: "lessons",
+        localField: "lessons",
+        foreignField: "_id",
+        as: "lessons",
+      },
+    },
+  ])
+    // // Course.find()
+
+    //   .select("title description questions lessons")
     .then((allCourses) => {
       return res.status(200).json({
         success: true,
@@ -44,12 +63,35 @@ exports.getCourses = (req, res) => {
 
 exports.getACourse = (req, res) => {
   const id = req.params.courseId;
-  Course.findById(id)
+  // Course.findById(id);
+  Course.aggregate([
+    {
+      $lookup: {
+        from: "questions",
+        localField: "questions",
+        foreignField: "_id",
+        as: "questions",
+      },
+    },
+    {
+      $lookup: {
+        from: "lessons",
+        localField: "lessons",
+        foreignField: "_id",
+        as: "lessons",
+      },
+    },
+    {
+      $match: {
+        _id: mongoose.Types.ObjectId(id),
+      },
+    },
+  ])
     .then((aCourse) => {
       res.status(200).json({
         success: true,
         message: `More on ${aCourse.title}`,
-        Course: aCourse,
+        Course: aCourse[0] || null,
       });
     })
     .catch((err) => {

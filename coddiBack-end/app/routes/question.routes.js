@@ -9,6 +9,11 @@ module.exports = function (app) {
   });
   app.post("/api/question", controller.createQuestion);
   app.get("/api/question", controller.getQuestions);
+
+  app.get("/api/lesson/:lessonId/question", controller.getAllQuestionsLesson);
+  app.get("/api/course/:courseId/question", controller.getAllQuestionCourse);
+  app.get("/api/question/:questionId", controller.getAQuestion);
+
   app.put("/api/question/:questionId", controller.updateQuestion);
   app.delete("/api/question/:questionId", controller.deleteQuestion);
 };

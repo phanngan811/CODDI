@@ -21,25 +21,40 @@ import EventBus from "./common/EventBus";
 import NavAdmin from "./components/nav/navAdmin";
 import Course from "./components/course.component";
 import CourseList from "./components/courseList.component";
-
+import LessonsCourse from "./components/lessonsCourse.component";
+import CreateQuestion from "./components/questions/createQuestion.component";
+import ListQuestion from "./components/questions/listQuestion.component";
+import TestCourse from "./components/testCourse.component";
+import ShowLesson from "./components/lesson/showLesson.component";
+import CreateLesson from "./components/lesson/createLesson.component";
+import ListCourse from "./components/lesson/listCourse.component";
+import Footer from "./components/nav/Footer";
 function App() {
   return (
     <Router history={history}>
       <NavHeader />
-      <div className="container mt-3">
+      <div className="mainContent">
         <Switch>
           <Route exact path={["/", "/home"]} component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/profile" component={Profile} />
           <Route path="/user" component={BoardUser} />
+          <Route exact path="/home/:id" component={LessonsCourse} />
+          <Route exact path="/home/:id/test" component={TestCourse} />
+          <Route exact path="/home/:id/lesson" component={ShowLesson} />
           {/* <Route path="/admin" component={BoardAdmin} /> */}
-          <Route path="/admin/dashBoard" component={NavAdmin} />
-          <Route path="/admin/course" component={BoardAdmin} />
-          <Route path="/admin/question/:id" component={Course} />
-          <Route path="/admin/question" component={CourseList} />
+          <Route path="/admin/dashBoard" component={BoardAdmin} />
+          <Route path="/admin/createCourse" component={BoardAdmin} />
+          <Route path="/admin/course/:id" component={Course} />
+          <Route path="/admin/course" component={CourseList} />
+          {/* <Route path="/admin/question" component={CreateQuestion} /> */}
+          <Route path="/admin/question" component={ListQuestion} />
+          <Route path="/admin/addQuestion" component={CreateQuestion} />
+          <Route path="/admin/lesson" component={ListCourse} />
         </Switch>
       </div>
+      <Footer/>
 
       {/* <AuthVerify logOut={this.logOut}/> */}
     </Router>

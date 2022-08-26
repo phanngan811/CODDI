@@ -1,12 +1,17 @@
+const { query } = require("express");
+const Course = require("../models/course.model");
 const Question = require("../models/question.model");
-
+const mongoose = require("mongoose");
 exports.createQuestion = (req, res) => {
   const question = new Question({
     aQuestion: req.body.aQuestion,
-    aCorrectAnswer: req.body.aCorrectAnswer,
-    answers: req.body.answers,
     description: req.body.description,
+    answers: req.body.answers,
+    correct: req.body.correct,
+    lesson: req.body.lesson,
   });
+
+  // /courses/:id/questions
   question
     .save()
     .then((newQuestion) => {
@@ -28,7 +33,7 @@ exports.createQuestion = (req, res) => {
 
 exports.getQuestions = (req, res) => {
   Question.find()
-    .select("aQuestion aCorrectAnswer answers description")
+    .select("aQuestion description answers correct lesson")
     .then((allQuestions) => {
       return res.status(200).json({
         success: true,
@@ -40,6 +45,79 @@ exports.getQuestions = (req, res) => {
       res.status(500).json({
         success: false,
         message: "Server error. Please try again.",
+        error: err.message,
+      });
+    });
+};
+exports.getAllQuestionsLesson = (req, res) => {
+  Question.find({ lesson: req.params.lessonId })
+    .then((questionLesson) => {
+      return res.status(200).json({
+        success: true,
+        message: "list all questions of a lesson",
+        Question: questionLesson,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: "Server error. Please try again.",
+        error: err.message,
+      });
+    });
+};
+
+exports.getAllQuestionCourse = (req, res) => {
+  const id = req.params.courseId;
+  Question.aggregate([
+    {
+      $lookup: {
+        from: "lessons",
+        localField: "lesson",
+        foreignField: "_id",
+        as: "lessonObject",
+      },
+    },
+    {
+      $unwind: {
+        path: "$lessonObject",
+      },
+    },
+    {
+      $match: {
+        "lessonObject.course": mongoose.Types.ObjectId(id),
+      },
+    },
+  ])
+    .then((aQuestion) => {
+      res.status(200).json({
+        success: true,
+        message: `More on ${aQuestion.title}`,
+        Question: aQuestion,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: "This question does not exist",
+        error: err.message,
+      });
+    });
+};
+exports.getAQuestion = (req, res) => {
+  const id = req.params.questionId;
+  Question.findById(id)
+    .then((aQuestion) => {
+      res.status(200).json({
+        success: true,
+        message: `More on ${aQuestion.title}`,
+        Question: aQuestion,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: "This question does not exist",
         error: err.message,
       });
     });

@@ -4,6 +4,7 @@ import UserService from "../services/user.service";
 import CourseService from "../services/course.service";
 import { Link } from "react-router-dom";
 import { retrieveTutorials } from "../actions/courses";
+import "./home.css";
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -35,20 +36,26 @@ class Home extends Component {
   render() {
     const { courses } = this.state;
     return (
-      <div>
-        <div className="edit-form">
-          <h4>Tutorial</h4>
+      <div className="container home pt-4">
+        <div className="d-flex flex-column justify-content-center">
+          <h4 className="">Tutorials</h4>
 
-          <ul className="list-group">
-            <div className="row">
+          <ul className="container">
+            <div className="d-flex flex-wrap">
               {courses.map((course, index) => (
-                <div className="col-4" key={index}>
-                  <div className="card text-white bg-primary">
-                    <div className="card-body">
+                <div className="card" key={index}>
+                  <div className="card-body d-flex flex-column">
                       <h4 className="card-title">{course.title}</h4>
-                      <p className="card-text">{course.description}</p>
+                      <p className="card-text flex-fill">
+                        {course.description}
+                      </p>
+                      <Link
+                        to={"/home/" + course._id}
+                        className="btn btn-primary"
+                      >
+                        Learn
+                      </Link>
                     </div>
-                  </div>
                 </div>
               ))}
             </div>

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
@@ -77,7 +77,7 @@ class Login extends Component {
     const { isLoggedIn, message } = this.props;
 
     if (isLoggedIn) {
-      return <Redirect to="/home" />;
+      return <Link to="/home" />;
     }
 
     return (
@@ -154,22 +154,23 @@ class Login extends Component {
           this.form = c;
         }}
       >
-        <div id="login">
+        <div id="login" className="pt-4">
           <div className="container">
             <div
               id="login-row"
-              className="row justify-content-center align-items-center"
+              className="row d-flex flex-column justify-content-center align-items-center"
             >
-              <div id="login-column" className="col-md-6">
+              <div id="login-column" className="col-md-3">
                 <div id="login-box" className="col-md-12">
-                  <form id="login-form" className="form" action method="post">
-                    <h3 className="text-center text-dark">LOGIN</h3>
+                  <form id="login-form" className="form bg-white rounded border p-4" action method="post">
+                    <h3 className="text-center text-dark">Login</h3>
                     <div className="form-group">
                       <label htmlFor="username" className="text-dark">
                         Username:
                       </label>
                       <br />
                       <Input
+                        id="username"
                         type="text"
                         className="form-control"
                         name="username"
@@ -184,6 +185,7 @@ class Login extends Component {
                       </label>
                       <br />
                       <Input
+                        id="password"
                         type="password"
                         className="form-control"
                         name="password"
@@ -194,7 +196,7 @@ class Login extends Component {
                     </div>
                     <div className="form-group">
                       <button
-                        className="btn btn-primary btn-md"
+                        className="btn btn-primary btn-md mt-4"
                         disabled={this.state.loading}
                       >
                         {this.state.loading && (

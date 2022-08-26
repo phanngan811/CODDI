@@ -1,6 +1,10 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import CourseService from "../services/course.service";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useHistory, useParams } from "react-router-dom";
+import NavAdmin from "./nav/navAdmin";
+
 export default class CourseList extends Component {
   constructor(props) {
     super(props);
@@ -13,6 +17,7 @@ export default class CourseList extends Component {
       currentIndex: -1,
     };
   }
+
   componentDidMount() {
     this.getCourse();
   }
@@ -46,55 +51,57 @@ export default class CourseList extends Component {
   render() {
     const { courses, currentCourse, currentIndex } = this.state;
     return (
-      <div className="list row">
-        <div className="col-md-6">
-          <h4>Tutorials List</h4>
-          <ul className="list-group">
-            {courses &&
-              courses.map((course, index) => (
-                <li
-                  className={
-                    "list-group-item " +
-                    (index === currentIndex ? "active" : "")
-                  }
-                  onClick={() => this.setActiveCourse(course, index)}
-                  key={index}
-                >
-                  {course.title}
-                </li>
-              ))}
-          </ul>
-        </div>
-        <div className="col-md-6">
-          {currentCourse ? (
-            <div>
-              <h4>Tutorial</h4>
+      <div>
+        <NavAdmin/>
+        <div className="pt-4 pb-3">
+          <div className="container bg-white w-50 pb-4 border rounded">
+            <h4 className="pt-2">Tutorials List</h4>
+            <ul className="list-group">
+              {courses &&
+                courses.map((course, index) => (
+                  <li
+                    className={
+                      "list-group-item " +
+                      (index === currentIndex ? "active" : "")
+                    }
+                    onClick={() => this.setActiveCourse(course, index)}
+                    key={index}
+                  >
+                    {index+1 + ". " + course.title}
+                  </li>
+                ))}
+            </ul>
+          </div>
+          <div className="container bg-white w-50 pb-4 pt-4 border rounded mt-3 mb-3">
+            {currentCourse ? (
               <div>
-                <label>
-                  <strong>Title:</strong>
-                </label>{" "}
-                {currentCourse.title}
-              </div>
-              <div>
-                <label>
-                  <strong>Description:</strong>
-                </label>{" "}
-                {currentCourse.description}
-              </div>
+                <h4>Tutorial</h4>
+                <div>
+                  <label>
+                    <strong>Title:</strong>
+                  </label>{" "}
+                  {currentCourse.title}
+                </div>
+                <div>
+                  <label>
+                    <strong>Description:</strong>
+                  </label>{" "}
+                  {currentCourse.description}
+                </div>
 
-              <Link
-                to={"/admin/question/" + currentCourse._id}
-                className="badge badge-warning"
-              >
-                Edit
-              </Link>
-            </div>
-          ) : (
-            <div>
-              <br />
-              <p>Please click on a Tutorial...</p>
-            </div>
-          )}
+                <Link
+                  to={"/admin/course/" + currentCourse._id}
+                  className="btn btn-warning mt-4"
+                >
+                  Edit
+                </Link>
+              </div>
+            ) : (
+              <div>
+                <p>Please click on a Tutorial...</p>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     );

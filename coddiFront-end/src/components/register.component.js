@@ -10,7 +10,7 @@ import "../App.css";
 const required = (value) => {
   if (!value) {
     return (
-      <div className="alert alert-danger" role="alert">
+      <div className="alert alert-danger mt-2" role="alert">
         This field is required!
       </div>
     );
@@ -186,7 +186,7 @@ class Register extends Component {
       //     </Form>
       //   </div>
       // </div>
-      <div>
+      <div className="d-flex flex-column align-items-center pt-4">
         <Form
           onSubmit={this.handleRegister}
           ref={(c) => {
@@ -194,16 +194,16 @@ class Register extends Component {
           }}
         >
           <div className="card">
-            <article className="card-body mx-auto" style={{ maxWidth: 400 }}>
-              <h4 className="card-title mt-3 text-center">Create Account</h4>
-              <form>
+            <div className="mx-auto d-flex flex-column align-items-center justify-content-center" style={{ maxWidth: "500px", minWidth: "300px" }}>
+              <h4 className="card-title text-center mt-4">Create account</h4>
+              <form className="card-body">
                 {!this.state.successful && (
                   <div>
                     <div className="form-group input-group">
                       <div className="input-group-prepend">
-                        <span className="input-group-text">
+                        <span className="form-control bg-secondary">
                           {" "}
-                          <i className="fa fa-user" />{" "}
+                          <i className="fa fa-user text-light" />{" "}
                         </span>
                       </div>
                       <Input
@@ -217,11 +217,11 @@ class Register extends Component {
                       />
                     </div>{" "}
                     {/* form-group// */}
-                    <div className="form-group input-group">
+                    <div className="form-group input-group mt-4">
                       <div className="input-group-prepend">
-                        <span className="input-group-text">
+                        <span className="form-control bg-secondary">
                           {" "}
-                          <i className="fa fa-envelope" />{" "}
+                          <i className="fa fa-envelope text-light" />{" "}
                         </span>
                       </div>
                       <Input
@@ -235,11 +235,11 @@ class Register extends Component {
                       />
                     </div>{" "}
                     {/* form-group end.// */}
-                    <div className="form-group input-group">
+                    <div className="form-group input-group mt-4">
                       <div className="input-group-prepend">
-                        <span className="input-group-text">
+                        <span className="form-control bg-secondary">
                           {" "}
-                          <i className="fa fa-lock" />{" "}
+                          <i className="fa fa-lock text-light" />{" "}
                         </span>
                       </div>
                       <Input
@@ -252,13 +252,13 @@ class Register extends Component {
                         validations={[required, vpassword]}
                       />
                     </div>{" "}
-                    <div className="form-group">
+                    <div className="form-group mt-4">
                       <button
                         type="submit"
                         className="btn btn-primary btn-block"
                       >
                         {" "}
-                        Create Account
+                        Sign up
                       </button>
                     </div>{" "}
                   </div>
@@ -283,11 +283,11 @@ class Register extends Component {
                     this.checkBtn = c;
                   }}
                 />
-                <p className="text-center">
+                <p className="text-center mt-4">
                   Have an account? <a href>Log In</a>{" "}
                 </p>
               </form>
-            </article>
+            </div>
           </div>{" "}
         </Form>
       </div>

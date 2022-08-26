@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../App.css";
+import "./navHeader.css";
 
 import { logout } from "../../actions/auth";
 import { clearMessage } from "../../actions/message";
@@ -11,7 +12,8 @@ import { history } from "../../helpers/history";
 
 // import AuthVerify from "./common/auth-verify";
 import EventBus from "../../common/EventBus";
-import "../../App.css";
+import logo from "../../img/CODDI_logo.png";
+
 class NavHeader extends Component {
   constructor(props) {
     super(props);
@@ -56,11 +58,15 @@ class NavHeader extends Component {
   render() {
     const { currentUser, showAdminBoard } = this.state;
     return (
-      <nav className="navbar navbar-expand navbar-dark bg-primary">
-        <Link to={"/"} className="navbar-brand">
-          CODDI
-        </Link>
-        <div className="navbar-nav mr-auto">
+      <nav className="navbar navbar-expand navbar-light d-flex justify-content-between nav-header">
+        <div className="navbar-nav left">
+          <li className=" nav-item-logo">
+            <Link to={"/"}>
+              <img className="logo" src={logo} alt="logo"></img>
+            </Link>
+          </li>
+
+          {/* <div className="navbar-nav"> */}
           <li className="nav-item">
             <Link to={"/home"} className="nav-link">
               Home
@@ -82,36 +88,47 @@ class NavHeader extends Component {
               </Link>
             </li>
           )}
+          {/* </div> */}
         </div>
 
-        {currentUser ? (
-          <div className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <Link to={"/profile"} className="nav-link">
-                {currentUser.username}
-              </Link>
-            </li>
-            <li className="nav-item">
-              <a href="/login" className="nav-link" onClick={this.logOut}>
-                LogOut
-              </a>
-            </li>
-          </div>
-        ) : (
-          <div className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <Link to={"/login"} className="nav-link">
-                Login
-              </Link>
-            </li>
+        <div className="">
+          {currentUser ? (
+            <div className="navbar-nav right">
+              <li className="">
+                <Link to={"/profile"}>
+                  <button type="button" class="btn btn-outline-dark border-0">
+                    {currentUser.username}
+                  </button>
+                </Link>
+              </li>
+              <li className="">
+                <Link to="/login" onClick={this.logOut}>
+                  <button type="button" class="btn btn-danger">
+                    Log Out
+                  </button>
+                </Link>
+              </li>
+            </div>
+          ) : (
+            <div className="navbar-nav">
+              <li className="">
+                <Link to={"/login"}>
+                  <button type="button" class="btn btn-outline-dark border-0">
+                    Login
+                  </button>
+                </Link>
+              </li>
 
-            <li className="nav-item">
-              <Link to={"/register"} className="nav-link">
-                Sign Up
-              </Link>
-            </li>
-          </div>
-        )}
+              <li className="">
+                <Link to={"/register"}>
+                  <button type="button" class="btn btn-danger ml-4">
+                    Sign Up
+                  </button>
+                </Link>
+              </li>
+            </div>
+          )}
+        </div>
       </nav>
     );
   }
