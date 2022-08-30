@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import QuestionService from "../../services/question.service";
 import LessonService from "../../services/lesson.service";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import DisplayQuestion from "./displayQuestion.component";
 function GetQuestion({ id }) {
   const [questions, setQuestions] = useState([]);
@@ -22,12 +23,15 @@ function GetQuestion({ id }) {
   return (
     <div>
       {questions.map(({ aQuestion, answers, correct, _id }) => (
-        <DisplayQuestion
-          key={_id}
-          aQuestion={aQuestion}
-          answers={answers}
-          correct={correct}
-        />
+        <div>
+          <DisplayQuestion
+            key={_id}
+            aQuestion={aQuestion}
+            answers={answers}
+            correct={correct}
+          />
+          <Link to={`/question/${id}/comment`}>Discusion</Link>
+        </div>
       ))}
     </div>
   );

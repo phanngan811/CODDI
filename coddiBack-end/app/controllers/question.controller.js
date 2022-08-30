@@ -8,7 +8,7 @@ exports.createQuestion = (req, res) => {
     description: req.body.description,
     answers: req.body.answers,
     correct: req.body.correct,
-    lesson: req.body.lesson,
+    lesson: req.query.lessonId,
   });
 
   // /courses/:id/questions

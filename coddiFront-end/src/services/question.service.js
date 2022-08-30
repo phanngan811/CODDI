@@ -1,8 +1,8 @@
 import axios from "axios";
 const API_URL = "http://localhost:8080/api/";
 class Question {
-  createQuestion(data, courseId) {
-    return axios.post(API_URL + `question?courseId=${courseId}`, data);
+  createQuestion(data, lessonId) {
+    return axios.post(API_URL + `question?lessonId=${lessonId}`, data);
   }
   getAllQuestion() {
     return axios.get(API_URL + "question");

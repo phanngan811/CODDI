@@ -3,6 +3,7 @@ import CourseService from "../../services/course.service";
 import LessonService from "../../services/lesson.service";
 import { useParams } from "react-router-dom";
 import GetQuestion from "./getQuestionLesson.component";
+import { Link } from "react-router-dom";
 export default function ShowLesson() {
   const [lesson, setLesson] = useState([]);
   const { id } = useParams();
@@ -23,24 +24,23 @@ export default function ShowLesson() {
     <div className="container pt-4 pb-4">
       <h3>Lessons</h3>
       <div className="accordion">
-      {lesson.map((text, index) => (
-        <div key={index}  className="accordion-item" id="accordionExample">
-          
+        {lesson.map((text, index) => (
+          <div key={index} className="accordion-item" id="accordionExample">
             <h2 className="accordion-header" id="heading">
               <button
                 className="accordion-button collapsed"
-                style={{backgroundColor: "#4DD4AC"}}
+                style={{ backgroundColor: "#4DD4AC" }}
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target={"#collapse" + index}
                 aria-expanded="false"
                 aria-controls={"collapse" + index}
               >
-                {index+1 + ". " + text.titleLesson}
+                {index + 1 + ". " + text.titleLesson}
               </button>
             </h2>
             <div
-              id={"collapse" + index}  
+              id={"collapse" + index}
               className="accordion-collapse collapse"
               aria-labelledby="heading"
               data-bs-parent="#accordionExample"
@@ -53,8 +53,7 @@ export default function ShowLesson() {
               </div>
             </div>
           </div>
-       
-      ))}
+        ))}
       </div>
     </div>
   );

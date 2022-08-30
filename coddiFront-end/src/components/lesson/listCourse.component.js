@@ -3,46 +3,40 @@ import { Link, useParams } from "react-router-dom";
 import CourseService from "../../services/course.service";
 import NavAdmin from "../nav/navAdmin";
 import CreateLesson from "./createLesson.component";
-
-export default function ListCourse() {
-  const [courses, setCourses] = useState([]);
-  const [selected, setSelected] = useState(false);
-  const { id } = useParams();
+import LessonService from "../../services/lesson.service";
+export default function ListLesson({ id }) {
+  const [lessons, setLesson] = useState([]);
+  // const { id } = useParams();
   useEffect(() => {
-    getCourse();
+    getLessons();
   }, []);
 
-  function getCourse() {
-    CourseService.getAllCourse()
+  function getLessons() {
+    LessonService.getAllLessonCourse(id)
       .then((response) => {
-        setCourses(response.data.Course);
-        console.log(response.data.Course);
+        setLesson(response.data.Lesson);
+        console.log(response.data.Lesson);
       })
       .catch((e) => {
         console.log(e);
       });
   }
-  const handleClick = (event) => {
-    // 👇️ toggle shown state
-    setSelected(true);
 
-    // 👇️ or simply set it to true
-    // setIsShown(true);
-  };
   return (
     <div>
-      <NavAdmin/>
-      {courses.map((course, index) => (
-        <div key={index}>
-          <button onClick={handleClick}>{course.title}</button>
-          {selected && (
-            <div>
-              <h3>Create the lesson</h3>
-            </div>
-          )}
-          {selected && <CreateLesson />}
+      <div className="container pt-4 pb-4">
+        <div className="accordion">
+          <ul className="list-group">
+            {lessons.map((lesson, index) => (
+              <li className="list-group-item" key={index}>
+                <Link to={"/admin/lesson/" + lesson._id}>
+                  {lesson.titleLesson}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
-      ))}
+      </div>
     </div>
   );
 }

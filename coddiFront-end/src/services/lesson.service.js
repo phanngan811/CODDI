@@ -13,5 +13,11 @@ class LessonService {
   createLesson(data, courseId) {
     return axios.post(API_URL + `lesson?courseId=${courseId}`, data);
   }
+  updateLesson(lessonId, data) {
+    return axios.put(API_URL + `lesson/${lessonId}`, data);
+  }
+  deleteLesson(lessonId) {
+    return axios.delete(API_URL + `lesson/${lessonId}`);
+  }
 }
 export default new LessonService();

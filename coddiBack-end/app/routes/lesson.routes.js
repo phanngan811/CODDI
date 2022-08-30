@@ -12,6 +12,8 @@ module.exports = function (app) {
 
   app.get("/api/course/:courseId/lesson", controller.getLessonsCourse);
 
+  // app.get("/api/courses/:courseId/lesson", controller.getLessonCourseFor);
+
   app.get("/api/lesson/:lessonId", controller.getALesson);
   app.put("/api/lesson/:lessonId", controller.updateLesson);
   app.delete("/api/lesson/:lessonId", controller.deleteLesson);

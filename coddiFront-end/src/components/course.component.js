@@ -3,6 +3,7 @@ import CourseService from "../services/course.service";
 import CreateQuestion from "./questions/createQuestion.component";
 import CreateLesson from "./lesson/createLesson.component";
 import NavAdmin from "./nav/navAdmin";
+import ListLesson from "./lesson/listCourse.component";
 export default class Course extends Component {
   constructor(props) {
     super(props);
@@ -119,7 +120,7 @@ export default class Course extends Component {
                     />
                   </div>
                 </form>
-                
+
                 <button
                   className="btn btn-outline-danger mt-4"
                   onClick={this.deleteCourse}
@@ -133,9 +134,10 @@ export default class Course extends Component {
                 >
                   Update
                 </button>
-                
+
                 <p>{this.state.message}</p>
                 <CreateLesson id={this.props.match.params.id} />
+                <ListLesson id={this.props.match.params.id} />
               </div>
             </div>
           ) : (

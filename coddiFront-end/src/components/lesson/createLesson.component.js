@@ -33,11 +33,23 @@ export default function CreateLesson() {
   }
   return (
     <div>
+      <h4>Create Lesson</h4>
       <p>Writing a title for lesson</p>
-      <input className="form-control" onChange={onChangeTitle} value={titleLesson} />
-      <p>Writing a description of question</p>
-      <input className="form-control" onChange={onChangeDescription} value={descriptionLesson} />
-      <button className="btn btn-success mt-4" onClick={saveLesson}>Submit</button>
+      <input
+        className="form-control"
+        onChange={onChangeTitle}
+        value={titleLesson}
+      />
+      <p>Writing a description of lesson</p>
+      <input
+        className="form-control"
+        onChange={onChangeDescription}
+        value={descriptionLesson}
+      />
+      <button className="btn btn-success mt-4" onClick={saveLesson}>
+        Submit
+      </button>
+      <h4>List Lessons</h4>
     </div>
   );
 }

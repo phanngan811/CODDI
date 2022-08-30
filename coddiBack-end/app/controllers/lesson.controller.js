@@ -62,6 +62,36 @@ exports.getLessonsCourse = (req, res) => {
       });
     });
 };
+
+// exports.getLessonCourseFor = (req, res) => {
+//   const id = req.params.courseId;
+//   Lesson.aggregate([
+//     {
+//       from: "courses",
+//       localField: "course",
+//       foreignField: "_id",
+//       as: "courseObject",
+//     },
+//     {
+//       path: "$courseObject",
+//     },
+//   ])
+//     .then((aLesson) => {
+//       res.status(200).json({
+//         success: true,
+//         message: `More on ${aLesson.title}`,
+//         Lesson: aLesson,
+//       });
+//     })
+//     .catch((err) => {
+//       res.status(500).json({
+//         success: false,
+//         message: "This lesson does not exist",
+//         error: err.message,
+//       });
+//     });
+// };
+
 exports.getALesson = (req, res) => {
   const id = req.params.lessonId;
   Lesson.findById(id)

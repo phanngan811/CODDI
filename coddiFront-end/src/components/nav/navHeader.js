@@ -73,6 +73,11 @@ class NavHeader extends Component {
             </Link>
           </li>
 
+          <li className="nav-item">
+            <Link to={"/dicussion"} className="nav-link">
+              Home
+            </Link>
+          </li>
           {showAdminBoard && (
             <li className="nav-item">
               <Link to={"/admin/dashboard"} className="nav-link">

@@ -29,6 +29,8 @@ import ShowLesson from "./components/lesson/showLesson.component";
 import CreateLesson from "./components/lesson/createLesson.component";
 import ListCourse from "./components/lesson/listCourse.component";
 import Footer from "./components/nav/Footer";
+import UpdateAndDelete from "./components/lesson/updateAndDelete.component";
+import CommentList from "./components/comment/commentList.component";
 function App() {
   return (
     <Router history={history}>
@@ -51,10 +53,14 @@ function App() {
           {/* <Route path="/admin/question" component={CreateQuestion} /> */}
           <Route path="/admin/question" component={ListQuestion} />
           <Route path="/admin/addQuestion" component={CreateQuestion} />
-          <Route path="/admin/lesson" component={ListCourse} />
+          <Route path={"/admin/lesson/:id"} component={UpdateAndDelete} />
+          <Route
+            path={"/question/:questionId/comment"}
+            component={CommentList}
+          />
         </Switch>
       </div>
-      <Footer/>
+      <Footer />
 
       {/* <AuthVerify logOut={this.logOut}/> */}
     </Router>

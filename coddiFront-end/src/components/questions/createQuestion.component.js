@@ -8,6 +8,7 @@ export default function CreateQuestion({ id }) {
   const [description, setDescription] = useState("");
   const [answers, setAnswers] = useState([""]);
   const [correct, setCorrect] = useState("");
+
   //const [numberQuestion, setNumberQuestion] = useState(1);
   const [success, setSuccess] = useState(false);
   // const [id] = useParams();
@@ -16,9 +17,9 @@ export default function CreateQuestion({ id }) {
     setAnswers([...answers, ""]);
   }
 
-  function removeAnswer () {
+  function removeAnswer() {
     // setAnswers([...answers]);
-    setAnswers((previousAns) => (previousAns.slice(0, -1)));
+    setAnswers((previousAns) => previousAns.slice(0, -1));
   }
 
   function saveQuestion() {
@@ -50,7 +51,6 @@ export default function CreateQuestion({ id }) {
 
   return (
     <div>
-      <NavAdmin />
       <div className="container pt-4 pb-4">
         <div className="container border rounded pt-4 pb-4">
           <p>Writing a question</p>
@@ -84,7 +84,10 @@ export default function CreateQuestion({ id }) {
           <button className="btn btn-outline-primary mt-2" onClick={addAnswer}>
             Add answer
           </button>
-          <button className="btn btn-outline-danger mt-2" onClick={removeAnswer}>
+          <button
+            className="btn btn-outline-danger mt-2"
+            onClick={removeAnswer}
+          >
             Remove answer
           </button>
           <p>Writing a correct question</p>
