@@ -4,8 +4,8 @@ import { Router, Switch, Route, Link } from "react-router-dom";
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import "./App.css";
 import NavHeader from "./components/nav/navHeader";
-import Login from "./components/login.component";
 import Register from "./components/register.component";
+import Login from "./components/login.component";
 import Home from "./components/home.component";
 import Profile from "./components/profile.component";
 import BoardUser from "./components/board-user.component";
@@ -31,6 +31,7 @@ import ListCourse from "./components/lesson/listCourse.component";
 import Footer from "./components/nav/Footer";
 import UpdateAndDelete from "./components/lesson/updateAndDelete.component";
 import CommentList from "./components/comment/commentList.component";
+
 function App() {
   return (
     <Router history={history}>
@@ -51,7 +52,7 @@ function App() {
           <Route path="/admin/course/:id" component={Course} />
           <Route path="/admin/course" component={CourseList} />
           {/* <Route path="/admin/question" component={CreateQuestion} /> */}
-          <Route path="/admin/question" component={ListQuestion} />
+          {/* <Route path="/admin/question" component={ListQuestion} /> */}
           <Route path="/admin/addQuestion" component={CreateQuestion} />
           <Route path={"/admin/lesson/:id"} component={UpdateAndDelete} />
           <Route

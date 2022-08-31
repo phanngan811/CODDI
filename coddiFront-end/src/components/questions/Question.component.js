@@ -1,13 +1,22 @@
 import React from "react";
 import { useState } from "react";
 
-function Question({ aQuestion, answers, correct, computeScore }) {
+function Question({
+  aQuestion,
+  answers,
+  correct,
+  computeScore,
+  onAnswered,
+  index,
+  isFinished,
+}) {
   const [message, setMessage] = useState();
   const [answered, setAnswered] = useState(false);
   const [selected, setSelected] = useState();
 
   function computeAnswer(answer, correctAns) {
     setSelected(answer);
+    onAnswered();
     if (answer === correctAns) {
       setMessage("correct Answer");
       computeScore();
@@ -18,7 +27,7 @@ function Question({ aQuestion, answers, correct, computeScore }) {
   }
   return (
     <div>
-      {aQuestion}
+      {index + 1 + ". " + aQuestion}
       {answers.map((text, _id) => (
         <div key={_id}>
           {console.log(text === correct)}
@@ -26,10 +35,17 @@ function Question({ aQuestion, answers, correct, computeScore }) {
             disabled={answered}
             className={
               "btn btn-primary " +
-              (correct === selected && answered && selected === text
+              (text === selected && !isFinished ? "btn-secondary" : "") +
+              (correct === selected &&
+              answered &&
+              selected === text &&
+              isFinished
                 ? "btn btn-success"
                 : "") +
-              (selected !== correct && text === selected && answered
+              (selected !== correct &&
+              text === selected &&
+              answered &&
+              isFinished
                 ? "btn btn-danger"
                 : "")
             }
@@ -41,7 +57,7 @@ function Question({ aQuestion, answers, correct, computeScore }) {
           </button>
         </div>
       ))}
-      <p>{message}</p>
+      {isFinished && <p>{message}</p>}
     </div>
   );
 }
