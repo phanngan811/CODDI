@@ -40,21 +40,24 @@ export default function UpdateAndDelete() {
   }
 
   return (
-    <div className="container">
+    <div className="mainContent pb-4 pt-4">
+    <div className="">
+      <div className="container bg-white border rounded">
       <form onSubmit={updateLesson}>
         <label>Title</label>
-        <input type="text" onChange={onChangeTitle} value={title} />
+        <input className="form-control" type="text" onChange={onChangeTitle} value={title} />
         <label htmlFor="">Description</label>
-        <input type="text" onChange={onChangeDescription} value={description} />
-        <button>Update</button>
+        <textarea className="form-control" type="text" rows="6" onChange={onChangeDescription} value={description} />
+        <button className="btn btn-outline-primary">Update</button>
         {success ? "Successfully" : ""}
-        <button type="button" onClick={deleteLesson}>
+        <button className="btn btn-outline-danger" type="button" onClick={deleteLesson}>
           Delete
         </button>
         {success ? "Successfully" : ""}
       </form>
-
+    </div>
       <CreateQuestion id={id} />
+    </div>
     </div>
   );
 }

@@ -20,6 +20,18 @@ export default function ShowLesson() {
         console.log(e);
       });
   }
+  function TextTransform(props) {
+    const text = props.stringText;
+    const newText = text.split('\\n').map(
+      str => <p>
+        {str.split('\\t').map(
+          subStr => <span>&emsp;{subStr}</span>
+        )}
+        </p>
+      );
+    return <div>{newText}</div>;
+  }
+
   return (
     <div className="container pt-4 pb-4">
       <h3>Lessons</h3>
@@ -46,7 +58,7 @@ export default function ShowLesson() {
               data-bs-parent="#accordionExample"
             >
               <div className="accordion-body">
-                <p>{text.descriptionLesson}</p>
+                <TextTransform stringText={text.descriptionLesson}></TextTransform>
                 <span>
                   <GetQuestion id={text._id} />
                 </span>

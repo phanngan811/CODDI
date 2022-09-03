@@ -41,8 +41,9 @@ export default function CreateLesson() {
         value={titleLesson}
       />
       <p>Writing a description of lesson</p>
-      <input
+      <textarea
         className="form-control"
+        rows="6"
         onChange={onChangeDescription}
         value={descriptionLesson}
       />

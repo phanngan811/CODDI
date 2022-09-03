@@ -14,22 +14,33 @@ export default function DisplayQuestion({ aQuestion, answers, correct }) {
     }
     setAnswered(true);
   }
+  function TextTransform(props) {
+    const text = props.stringText;
+    const newText = text.split('\\n').map(
+      str => <p>
+        {str.split('\\t').map(
+          subStr => <span>&emsp;{subStr}</span>
+        )}
+        </p>
+      );
+    return <div>{newText}</div>;
+  }
   return (
     <div>
-      {aQuestion}
+      <TextTransform stringText={aQuestion}></TextTransform>
       {answers.map((text, _id) => (
         <div key={_id}>
           {console.log(text === correct)}
-          <div className="container mt-2">
+          <div className="container mt-2 ">
             <button
               disabled={answered}
               className={
-                "btn btn-outline-primary " +
+                "btn btn-outline-primary w-100 text-start " +
                 (correct === selected && answered && selected === text
-                  ? "btn-outline-success"
+                  ? "bg-success text-white"
                   : "") +
                 (selected !== correct && text === selected && answered
-                  ? "btn-outline-danger"
+                  ? "bg-danger text-white"
                   : "")
               }
               onClick={() => {

@@ -54,10 +54,11 @@ export default function CreateQuestion({ id }) {
       <div className="container pt-4 pb-4">
         <div className="container border rounded pt-4 pb-4">
           <p>Writing a question</p>
-          <input
+          <textarea
             className="form-control"
             onChange={onChangeAQuestion}
             value={aQuestion}
+            rows="6"
           />
           <p>Writing a description of question</p>
           <input

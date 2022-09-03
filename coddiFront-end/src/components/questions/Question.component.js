@@ -18,35 +18,46 @@ function Question({
     setSelected(answer);
     onAnswered();
     if (answer === correctAns) {
-      setMessage("correct Answer");
+      setMessage("Correct Answer");
       computeScore();
     } else {
       setMessage("Incorrect Answer");
     }
     setAnswered(true);
   }
+  function TextTransform(props) {
+    const text = props.stringText;
+    const newText = text.split('\\n').map(
+      str => <p>
+        {str.split('\\t').map(
+          subStr => <span>&emsp;{subStr}</span>
+        )}
+        </p>
+      );
+    return <div>{newText}</div>;
+  }
   return (
-    <div>
-      {index + 1 + ". " + aQuestion}
+    <div className="container mt-4 pt-4 pb-4 border rounded bg-white">
+      {index + 1 + ". "}<TextTransform stringText={aQuestion}></TextTransform>
       {answers.map((text, _id) => (
-        <div key={_id}>
+        <div className="mt-2" key={_id}>
           {console.log(text === correct)}
           <button
             disabled={answered}
             className={
-              "btn btn-primary " +
+              "btn btn-outline-primary w-100 text-start " +
               (text === selected && !isFinished ? "btn-secondary" : "") +
               (correct === selected &&
               answered &&
               selected === text &&
               isFinished
-                ? "btn btn-success"
+                ? "bg-success text-white"
                 : "") +
               (selected !== correct &&
               text === selected &&
               answered &&
               isFinished
-                ? "btn btn-danger"
+                ? "bg-danger text-white"
                 : "")
             }
             onClick={() => {
