@@ -35,6 +35,7 @@ export default function CommentList() {
     };
     CommentService.createComment(data, questionId)
       .then((response) => {
+        getComments();
         console.log(response.data);
       })
       .catch((e) => {

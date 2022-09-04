@@ -10,7 +10,8 @@ export default function CreateQuestion({ id }) {
   const [correct, setCorrect] = useState("");
 
   //const [numberQuestion, setNumberQuestion] = useState(1);
-  const [success, setSuccess] = useState(false);
+  const [success, setSuccess] = useState("");
+
   // const [id] = useParams();
 
   function addAnswer() {
@@ -31,7 +32,7 @@ export default function CreateQuestion({ id }) {
     };
     QuestionService.createQuestion(data, id)
       .then((response) => {
-        setSuccess(true);
+        setSuccess("Successfully creating question");
         console.log(response.data);
       })
       .catch((e) => {
@@ -109,6 +110,7 @@ export default function CreateQuestion({ id }) {
             <button className="btn btn-success mt-2" onClick={saveQuestion}>
               Submit
             </button>
+            <p>{success}</p>
           </div>
         </div>
       </div>

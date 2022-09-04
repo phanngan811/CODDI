@@ -64,70 +64,74 @@ export default function ListQuestion({ id }) {
   }
   function shuffle(array) {
     return array.sort(() => Math.random() - 0.5);
-
-  };
+  }
   // handleAnswer
 
   return (
     <div>
       <NavAdmin />
-      {questions.map(({ aQuestion, answers, correct, _id }, index) => (
-        <Question
-          isFinished={isFinished}
-          onAnswered={countAnsweredOk}
-          computeScore={computeScore}
-          aQuestion={aQuestion}
-          answers={shuffle(answers)}
-          correct={correct}
-          key={_id}
-          index={index}
-        />
-      ))}
-      {isFinished && <p>{score}</p>}
+      <div className="conatiner d-flex flex-column justify-content-center align-items-center p-4">
+          <h2>Test</h2>
 
-      <button
-        disabled={!isAnsweredAll}
-        data-bs-toggle="modal"
-        data-bs-target="#finishedTextModal"
-        onClick={() => setIsFinished(true)}
-      >
-        Finish test
-      </button>
+        {questions.map(({ aQuestion, answers, correct, _id }, index) => (
+          <Question
+            isFinished={isFinished}
+            onAnswered={countAnsweredOk}
+            computeScore={computeScore}
+            aQuestion={aQuestion}
+            answers={shuffle(answers)}
+            correct={correct}
+            key={_id}
+            index={index}
+          />
+        ))}
+        {isFinished && <p>{score}</p>}
 
-      <div
-        className="modal fade"
-        id="finishedTextModal"
-        tabIndex={-1}
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">
-                Test result
-              </h5>
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              />
-            </div>
+        <button
+          disabled={!isAnsweredAll}
+          data-bs-toggle="modal"
+          data-bs-target="#finishedTextModal"
+          onClick={() => setIsFinished(true)}
+          className="btn btn-outline-primary mt-4 w-25"
+        >
+          Finish test
+        </button>
 
-            <div className="modal-body">
-              Your score: {score}
-              <p>{getScoreCompa()}</p>
-            </div>
+        <div
+          className="modal fade"
+          id="finishedTextModal"
+          tabIndex={-1}
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLabel">
+                  Test result
+                </h5>
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                />
+              </div>
 
-            <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
+              <div className="modal-body">
+                Your score: {score}
+                <p>{getScoreCompa()}</p>
+              </div>
+
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+              </div>
             </div>
           </div>
         </div>

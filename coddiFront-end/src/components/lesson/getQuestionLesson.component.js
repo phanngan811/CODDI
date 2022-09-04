@@ -40,7 +40,7 @@ function GetQuestion({ id }) {
             answers={shuffle(answers)}
             correct={correct}
           />
-          <Link to={`/question/${id}/comment`}>Discusion</Link>
+          <Link to={`/question/${_id}/comment`}>Discusion</Link>
         </div>
       ))}
     </div>

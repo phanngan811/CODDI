@@ -81,13 +81,13 @@ class NavHeader extends Component {
             </li>
           )}
 
-          {currentUser && (
+          {/* {currentUser && (
             <li className="nav-item">
               <Link to={"/user"} className="nav-link">
                 User
               </Link>
             </li>
-          )}
+          )} */}
           {/* </div> */}
         </div>
 

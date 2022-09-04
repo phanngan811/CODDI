@@ -37,6 +37,24 @@ exports.getComments = async (req, res) => {
         $unwind: {
           path: "$author",
         },
+      },{
+
+        $match: {
+
+          question: mongoose.Types.ObjectId(req.query.questionId),
+
+        },
+
+      },
+
+      {
+
+        $sort: {
+
+          createdAt: -1,
+
+        },
+
       },
     ]);
 

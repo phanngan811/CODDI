@@ -199,7 +199,7 @@ export default class Course extends Component {
               </div>
 
               <div id="course_menu" className="card w-50">
-                <div className="card-title d-flex justify-content-center border bg-primary text-white">
+                <div className="card-title d-flex justify-content-center pt-4">
                   <h2>{currentCourse.title} course</h2>
                 </div>
                 <div className="card-body">
