@@ -28,6 +28,7 @@ export default function DisplayQuestion({ aQuestion, answers, correct }) {
   return (
     <div>
       <TextTransform stringText={aQuestion}></TextTransform>
+      
       {answers.map((text, _id) => (
         <div key={_id}>
           {console.log(text === correct)}
