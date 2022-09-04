@@ -161,10 +161,11 @@ class Login extends Component {
               className="row d-flex flex-column justify-content-center align-items-center"
             >
               <div id="login-column" className="col-md-3">
-                <div id="login-box" className="col-md-12">
+                <div id="login-box" className="col-md-12 d-flex flex-column justify-content-center align-items-center">
                   <form
                     id="login-form"
                     className="form bg-white rounded border p-4"
+                    style={{width: "300px"}}
                     action
                     method="post"
                   >

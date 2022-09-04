@@ -37,10 +37,10 @@ function Question({
     return <div>{newText}</div>;
   }
   return (
-    <div className="container mt-4 pt-4 pb-4 border rounded bg-white">
-      {index + 1 + ". "}<TextTransform stringText={aQuestion}></TextTransform>
+    <div className="container mt-4 p-4 border rounded bg-white">
+      {"Question " + (index + 1) + ": "}<TextTransform stringText={aQuestion}></TextTransform>
       {answers.map((text, _id) => (
-        <div className="mt-2" key={_id}>
+        <div className="mt-4" key={_id}>
           {console.log(text === correct)}
           <button
             disabled={answered}

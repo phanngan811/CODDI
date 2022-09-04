@@ -90,44 +90,53 @@ export default class BoardAdmin extends Component {
       <div>
         <NavAdmin />
         <div className="container pt-4 w-50">
-          <div className="bg-white border submit-form  rounded">
+          <div className="container">
             {this.state.submitted ? (
-              <div className="container">
-                <h4>You submitted successfully!</h4>
+              <div className="card">
+                <h4 className="card-title">You submitted successfully!</h4>
                 <button className="btn btn-success" onClick={this.newCourse}>
                   Add
                 </button>
               </div>
             ) : (
-              <div className="container pb-4 pt-4 ">
-                <h4>Create a course</h4>
-                <div className="form-group">
-                  <label htmlFor="title">Title</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="title"
-                    required
-                    value={this.state.title}
-                    onChange={this.onChangeTitle}
-                    name="title"
-                  />
+              <div className="container pb-4 pt-4 d-flex justify-content-center">
+                <div className="card p-4 w-75">
+                  <h4 className="card-title">Create a course</h4>
+                  <div className="card-body">
+                    <div className="form-group">
+                      <label htmlFor="title">Title</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="title"
+                        required
+                        value={this.state.title}
+                        onChange={this.onChangeTitle}
+                        name="title"
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="description">Description</label>
+                      <textarea
+                        type="text"
+                        className="form-control"
+                        id="description"
+                        required
+                        value={this.state.description}
+                        onChange={this.onChangeDescription}
+                        name="description"
+                        rows="5"
+                        style={{resize: "none"}}
+                      />
+                    </div>
+                    <button
+                      onClick={this.saveCourse}
+                      className="btn btn-success mt-4"
+                    >
+                      Create
+                    </button>
+                  </div>
                 </div>
-                <div className="form-group">
-                  <label htmlFor="description">Description</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="description"
-                    required
-                    value={this.state.description}
-                    onChange={this.onChangeDescription}
-                    name="description"
-                  />
-                </div>
-                <button onClick={this.saveCourse} className="btn btn-success mt-4">
-                  Create
-                </button>
               </div>
             )}
           </div>

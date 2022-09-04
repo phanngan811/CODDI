@@ -46,29 +46,79 @@ export default function CommentList() {
   }
 
   return (
-    <div>
-      <label htmlFor="">writing your comment here:</label>
-      <input className="form-control" onChange={onChangeText} value={text} />
-
-      <button className="btn btn-success mt-4" onClick={createComment}>
-        Comment
-      </button>
-
-      <h1>{idUser}</h1>
-      {comments.map((comment, index) => (
-        <div className="card" key={index}>
-          <div className="card-body">
-            <h5 className="card-title">
-              {comment.author.username}{" "}
-              <small className="fw-normal">
-                {dayjs().to(dayjs(comment.createdAt))}
-              </small>
-            </h5>
-
-            <p className="card-text">{comment.text}</p>
+    <div className="container pt-4 pb-4 d-flex flex-column align-items-center">
+      <div>
+        {/* Button trigger modal */}
+        <button
+          type="button"
+          className="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#add_comment"
+        >
+          Write a comment
+        </button>
+        {/* Modal */}
+        <div
+          className="modal fade"
+          id="add_comment"
+          tabIndex={-1}
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="card p-2">
+                <div className="card-body">
+                  {/* <h5 className="card-title">User: {idUser}</h5> */}
+                  <label htmlFor="comment">
+                    <h4 className="card-title">Add a comment</h4>
+                  </label>
+                  <textarea
+                    id="comment"
+                    className="form-control"
+                    rows="6"
+                    style={{ resize: "none" }}
+                    onChange={onChangeText}
+                    value={text}
+                  />
+                </div>
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button
+                  className="btn btn-success mt-2 mb-2"
+                  onClick={createComment}
+                >
+                  Send
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-      ))}
+      </div>
+
+      <div className="container pb-4 pt-4">
+        <h4>Recent comments</h4>
+        {comments.map((comment, index) => (
+          <div className="card mt-2" key={index}>
+            <div className="card-body">
+              <h5 className="card-title">
+                {comment.author.username}{" "}
+                <small className="fw-normal">
+                  {dayjs().to(dayjs(comment.createdAt))}
+                </small>
+              </h5>
+              <p className="card-text">{comment.text}</p>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

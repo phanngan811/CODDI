@@ -51,56 +51,65 @@ export default function CreateQuestion({ id }) {
 
   return (
     <div>
-      <div className="container pt-4 pb-4">
-        <div className="container border rounded pt-4 pb-4">
-          <p>Writing a question</p>
-          <textarea
-            className="form-control"
-            onChange={onChangeAQuestion}
-            value={aQuestion}
-            rows="6"
-          />
-          <p>Writing a description of question</p>
-          <input
-            className="form-control"
-            onChange={onChangeDescription}
-            value={description}
-          />
-          <p>Writing wrong answers</p>
-          <div className="vstack gap-3">
-            {answers.map((text, index) => {
-              return (
-                <input
-                  className="form-control"
-                  value={answers[index]}
-                  key={index}
-                  onChange={(e) => {
-                    answers[index] = e.target.value;
-                    setAnswers([...answers]);
-                  }}
-                />
-              );
-            })}
+      <div className="container">
+        <div className="card border-0 p-4">
+          <h2 className="card-title">Create a question</h2>
+          <div className="card-body">
+            <label htmlFor="question">Writing a question</label>
+            <textarea
+              id="question"
+              className="form-control"
+              onChange={onChangeAQuestion}
+              value={aQuestion}
+              rows="6"
+              style={{resize: "none"}}
+            />
+            <label htmlFor="question_description">Writing a description of question</label>
+            <input
+              id="question_description"
+              className="form-control"
+              onChange={onChangeDescription}
+              value={description}
+            />
+            <p>Writing wrong answers</p>
+            <div className="vstack gap-3">
+              {answers.map((text, index) => {
+                return (
+                  <input
+                    className="form-control"
+                    value={answers[index]}
+                    key={index}
+                    onChange={(e) => {
+                      answers[index] = e.target.value;
+                      setAnswers([...answers]);
+                    }}
+                  />
+                );
+              })}
+            </div>
+            <button
+              className="btn btn-outline-primary mt-4 me-4"
+              onClick={addAnswer}
+            >
+              Add answer
+            </button>
+            <button
+              className="btn btn-outline-danger mt-4"
+              onClick={removeAnswer}
+            >
+              Remove answer
+            </button>
+            <label htmlFor="correct_ans">Writing a correct question</label>
+            <input
+              id="correct_ans"
+              className="form-control"
+              value={correct}
+              onChange={onChangeCorrect}
+            />
+            <button className="btn btn-success mt-2" onClick={saveQuestion}>
+              Submit
+            </button>
           </div>
-          <button className="btn btn-outline-primary mt-2" onClick={addAnswer}>
-            Add answer
-          </button>
-          <button
-            className="btn btn-outline-danger mt-2"
-            onClick={removeAnswer}
-          >
-            Remove answer
-          </button>
-          <p>Writing a correct question</p>
-          <input
-            className="form-control"
-            value={correct}
-            onChange={onChangeCorrect}
-          />
-
-          <button className="btn btn-success mt-2" onClick={saveQuestion}>
-            Submit
-          </button>
         </div>
       </div>
     </div>

@@ -4,6 +4,9 @@ import CreateQuestion from "./questions/createQuestion.component";
 import CreateLesson from "./lesson/createLesson.component";
 import NavAdmin from "./nav/navAdmin";
 import ListLesson from "./lesson/listCourse.component";
+import { useState } from "react";
+import courseService from "../services/course.service";
+import "./course.css";
 export default class Course extends Component {
   constructor(props) {
     super(props);
@@ -90,53 +93,139 @@ export default class Course extends Component {
 
   render() {
     const { currentCourse } = this.state;
+
     return (
       <div>
         <NavAdmin />
         <div className="container pt-4 pb-4">
           {currentCourse ? (
-            <div className="edit-form">
-              <div className="container bg-white border rounded pb-4 pt-4 w-75">
-                <h4>Edit course</h4>
-                <form>
-                  <div className="form-group">
-                    <label htmlFor="title">Title</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="title"
-                      value={currentCourse.title}
-                      onChange={this.onChangeTitle}
-                    />
+            <div className="container d-flex flex-column justify-content-center align-items-center">
+              {/* Modal */}
+              <div
+                className="modal fade"
+                id="create_lesson"
+                tabIndex={-1}
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div className="modal-dialog">
+                  <div className="modal-content">
+                    <div className="card p-4">
+                      <CreateLesson id={this.props.match.params.id} />
+                    </div>
+                    <div className="modal-footer">
+                      <button
+                        type="button"
+                        className="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >
+                        Close
+                      </button>
+                    </div>
                   </div>
-                  <div className="form-group">
-                    <label htmlFor="description">Description</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="description"
-                      value={currentCourse.description}
-                      onChange={this.onChangeDescription}
-                    />
+                </div>
+              </div>
+
+              <div
+                className="modal fade"
+                id="edit_course"
+                tabIndex={-1}
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div className="modal-dialog">
+                  <div className="modal-content">
+                    <div className="card p-4 ">
+                      <h4 className="form-title">Edit course</h4>
+                      <form>
+                        <div className="form-group">
+                          <label htmlFor="title" className="form-label">
+                            Title
+                          </label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            id="title"
+                            value={currentCourse.title}
+                            onChange={this.onChangeTitle}
+                          />
+                        </div>
+                        <div className="form-group">
+                          <label htmlFor="description" className="form-label">
+                            Description
+                          </label>
+                          <textarea
+                            type="text"
+                            className="form-control"
+                            rows="5"
+                            style={{ resize: "none" }}
+                            id="description"
+                            value={currentCourse.description}
+                            onChange={this.onChangeDescription}
+                          />
+                        </div>
+                      </form>
+
+                      <div className="form-group d-flex justify-content-start">
+                        <button
+                          className="btn btn-outline-danger mt-4 w-25 me-4"
+                          onClick={this.deleteCourse}
+                        >
+                          Delete
+                        </button>
+                        <button
+                          type="submit"
+                          className="btn btn-outline-primary mt-4 w-25 me-4"
+                          onClick={this.updateCourse}
+                        >
+                          Update
+                        </button>
+                      </div>
+                      <p className="form-text text-success mt-4">
+                        {this.state.message}
+                      </p>
+                    </div>
+                    <div className="modal-footer">
+                      <button
+                        type="button"
+                        className="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >
+                        Close
+                      </button>
+                    </div>
                   </div>
-                </form>
+                </div>
+              </div>
 
-                <button
-                  className="btn btn-outline-danger mt-4"
-                  onClick={this.deleteCourse}
-                >
-                  Delete
-                </button>
-                <button
-                  type="submit"
-                  className="btn btn-outline-primary mt-4"
-                  onClick={this.updateCourse}
-                >
-                  Update
-                </button>
+              <div id="course_menu" className="card w-50">
+                <div className="card-title d-flex justify-content-center border bg-primary text-white">
+                  <h2>{currentCourse.title} course</h2>
+                </div>
+                <div className="card-body">
+                  <div className="container d-flex flex-column align-items-center">
+                    <button
+                      type="button"
+                      className="btn btn-primary w-50"
+                      data-bs-toggle="modal"
+                      data-bs-target="#create_lesson"
+                    >
+                      Create a lesson
+                    </button>
+                    <button
+                      type="button"
+                      className="btn btn-primary mt-4 w-50"
+                      data-bs-toggle="modal"
+                      data-bs-target="#edit_course"
+                    >
+                      Edit course information
+                    </button>
+                  </div>
+                </div>
+              </div>
 
-                <p>{this.state.message}</p>
-                <CreateLesson id={this.props.match.params.id} />
+              <div id="view_lesson" className="card p-4 w-50 mt-4">
+                <h4>{currentCourse.title} lessons</h4>
                 <ListLesson id={this.props.match.params.id} />
               </div>
             </div>

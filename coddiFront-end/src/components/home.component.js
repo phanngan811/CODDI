@@ -39,7 +39,6 @@ class Home extends Component {
       <div className="container home pt-4">
         <div className="d-flex flex-column justify-content-center">
           <h4 className="">Tutorials</h4>
-
           <ul className="container">
             <div className="d-flex flex-wrap">
               {courses.map((course, index) => (

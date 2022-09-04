@@ -59,7 +59,7 @@ export default class NavAdmin extends Component {
                   Create a course
                 </Link>
               </li>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <Link className="nav-link text-light" to="/admin/question">
                   Questions
                 </Link>
@@ -73,7 +73,7 @@ export default class NavAdmin extends Component {
                 <Link className="nav-link text-light" to="/admin/lesson">
                   Lessons
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
         </nav>

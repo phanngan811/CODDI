@@ -34,6 +34,7 @@ export default function ShowLesson() {
 
   return (
     <div className="container pt-4 pb-4">
+      
       <h3>Lessons</h3>
       <div className="accordion">
         {lesson.map((text, index) => (

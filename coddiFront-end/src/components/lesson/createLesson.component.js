@@ -44,13 +44,13 @@ export default function CreateLesson() {
       <textarea
         className="form-control"
         rows="6"
+        style={{resize: "none"}}
         onChange={onChangeDescription}
         value={descriptionLesson}
       />
       <button className="btn btn-success mt-4" onClick={saveLesson}>
         Submit
       </button>
-      <h4>List Lessons</h4>
     </div>
   );
 }
