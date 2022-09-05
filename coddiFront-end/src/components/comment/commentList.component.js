@@ -8,6 +8,8 @@ export default function CommentList() {
   const [comments, setComment] = useState([]);
   const [text, setText] = useState("");
   const [idUser, setIdUser] = useState(0);
+  const [username, setUsername] = useState("");
+
   const { questionId } = useParams();
 
   useEffect(() => {
@@ -18,6 +20,8 @@ export default function CommentList() {
   function getUser() {
     const u = JSON.parse(localStorage.getItem("user"));
     const idU = u.id;
+    const username = u.username;
+    setUsername(username);
     setIdUser(idU);
     console.log(idU);
   }
@@ -70,9 +74,9 @@ export default function CommentList() {
             <div className="modal-content">
               <div className="card p-2">
                 <div className="card-body">
-                  {/* <h5 className="card-title">User: {idUser}</h5> */}
+                  <h4 className="card-title text-primary">{username}</h4>
                   <label htmlFor="comment">
-                    <h4 className="card-title">Add a comment</h4>
+                    <h5 className="card-title">Add a comment</h5>
                   </label>
                   <textarea
                     id="comment"
@@ -81,6 +85,7 @@ export default function CommentList() {
                     style={{ resize: "none" }}
                     onChange={onChangeText}
                     value={text}
+                    placeholder="Message..."
                   />
                 </div>
               </div>
@@ -110,10 +115,13 @@ export default function CommentList() {
           <div className="card mt-2" key={index}>
             <div className="card-body">
               <h5 className="card-title">
-                {comment.author.username}{" "}
-                <small className="fw-normal">
-                  {dayjs().to(dayjs(comment.createdAt))}
-                </small>
+                <div className="text-primary">{comment.author.username}</div>
+                <div>
+                  <small className="text-muted fs-6" style={{opacity: 0.7}}>
+                    Shared publicly -
+                    {" " + dayjs().to(dayjs(comment.createdAt))}
+                  </small>
+                </div>
               </h5>
               <p className="card-text">{comment.text}</p>
             </div>

@@ -65,11 +65,16 @@ class NavHeader extends Component {
               <img className="logo" src={logo} alt="logo"></img>
             </Link>
           </li>
+          <li className="nav-item">
+            <Link to={"/homepage"} className="nav-link">
+              Home
+            </Link>
+          </li>
 
           {/* <div className="navbar-nav"> */}
           <li className="nav-item">
             <Link to={"/home"} className="nav-link">
-              Home
+              Tutorial
             </Link>
           </li>
 

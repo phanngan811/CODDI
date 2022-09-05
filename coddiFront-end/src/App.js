@@ -31,6 +31,7 @@ import ListCourse from "./components/lesson/listCourse.component";
 import Footer from "./components/nav/Footer";
 import UpdateAndDelete from "./components/lesson/updateAndDelete.component";
 import CommentList from "./components/comment/commentList.component";
+import homepage from "./components/homepage";
 
 function App() {
   return (
@@ -39,6 +40,8 @@ function App() {
       <div className="mainContent">
         <Switch>
           <Route exact path={["/", "/home"]} component={Home} />
+          <Route exact path={["/homepage"]} component={homepage} />
+
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/profile" component={Profile} />

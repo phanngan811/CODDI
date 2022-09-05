@@ -100,7 +100,7 @@ export default class BoardAdmin extends Component {
               </div>
             ) : (
               <div className="container pb-4 pt-4 d-flex justify-content-center">
-                <div className="card p-4 w-75">
+                <div className="card p-4" style={{width: "500px"}}>
                   <h4 className="card-title">Create a course</h4>
                   <div className="card-body">
                     <div className="form-group">

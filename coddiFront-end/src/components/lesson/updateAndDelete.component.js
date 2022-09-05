@@ -45,7 +45,7 @@ export default function UpdateAndDelete() {
       <NavAdmin />
       <div className="container pb-4 pt-4">
         <div className="container d-flex justify-content-center">
-          <div id="lesson_menu" className="card pt-4 pb-4 w-50">
+          <div id="lesson_menu" className="card pt-4 pb-4" style={{width: "400px"}}>
             <div className="card-title d-flex justify-content-center">
               <h2>{title}</h2>
             </div>

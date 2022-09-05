@@ -26,7 +26,7 @@ export default function ListLesson({ id }) {
     <div>
       <div className="container pt-4 pb-4">
         <div className="accordion">
-          <ul className="list-group">
+          <ol className="list-group list-group-numbered">
             {lessons.map((lesson, index) => (
               <li className="list-group-item" key={index}>
                 <Link to={"/admin/lesson/" + lesson._id}>
@@ -34,7 +34,7 @@ export default function ListLesson({ id }) {
                 </Link>
               </li>
             ))}
-          </ul>
+          </ol>
         </div>
       </div>
     </div>

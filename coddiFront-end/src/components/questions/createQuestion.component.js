@@ -62,15 +62,17 @@ export default function CreateQuestion({ id }) {
               className="form-control"
               onChange={onChangeAQuestion}
               value={aQuestion}
-              rows="6"
+              rows="4"
               style={{resize: "none"}}
             />
             <label htmlFor="question_description">Writing a description of question</label>
-            <input
+            <textarea
               id="question_description"
               className="form-control"
               onChange={onChangeDescription}
               value={description}
+              rows="4"
+              style={{resize: "none"}}
             />
             <p>Writing wrong answers</p>
             <div className="vstack gap-3">

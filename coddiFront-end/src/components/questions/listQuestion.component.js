@@ -14,13 +14,17 @@ export default function ListQuestion({ id }) {
   const [isAnsweredAll, setIsAnsweredAll] = useState(false);
   useEffect(() => {
     getQuestion();
+    // alert(JSON.stringify(questions));
   }, []);
 
   function getQuestion() {
     QuestionService.getAllQuestionCourse(id)
       .then((response) => {
+        for (var i = 0; i < response.data.Question.length; i++) {
+          shuffle(response.data.Question[i].answers);
+        }
         setQuestions(randomQuestion(response.data.Question));
-
+        // alert(JSON.stringify(response.data.Question[0].answers));
         console.log(response.data.Question);
       })
       .catch((e) => {
@@ -48,21 +52,28 @@ export default function ListQuestion({ id }) {
   }
   function getScoreCompa() {
     const percentage = score / questions.length;
-    if (percentage > 0.8) {
+    if (percentage >= 0.8) {
       return "CONGRATULATION! YOU GET HD";
     }
-    if (percentage > 0.7) {
+    if (percentage >= 0.7) {
       return "CONGRATULATION! YOU GET DI";
     }
-    if (percentage > 0.6) {
+    if (percentage >= 0.6) {
       return "YOU GET CR";
     }
-    if (percentage > 0.5) {
+    if (percentage >= 0.5) {
       return "YOU GET PA";
     }
     return "YOU GET NN, TRY MORE";
   }
   function shuffle(array) {
+    // for (var i = array.length - 1; i > 0; i--) {
+    //     var j = Math.floor(Math.random() * (i + 1));
+    //     var temp = array[i];
+    //     array[i] = array[j];
+    //     array[j] = temp;
+    //   }
+    //   return array;
     return array.sort(() => Math.random() - 0.5);
   }
   // handleAnswer
@@ -71,21 +82,23 @@ export default function ListQuestion({ id }) {
     <div>
       <NavAdmin />
       <div className="conatiner d-flex flex-column justify-content-center align-items-center p-4">
-          <h2>Test</h2>
-
-        {questions.map(({ aQuestion, answers, correct, _id }, index) => (
-          <Question
-            isFinished={isFinished}
-            onAnswered={countAnsweredOk}
-            computeScore={computeScore}
-            aQuestion={aQuestion}
-            answers={shuffle(answers)}
-            correct={correct}
-            key={_id}
-            index={index}
-          />
-        ))}
-        {isFinished && <p>{score}</p>}
+        <h2>Test</h2>
+        {questions.map(
+          ({ aQuestion, description, answers, correct, _id }, index) => (
+            <Question
+              isFinished={isFinished}
+              description={description}
+              onAnswered={countAnsweredOk}
+              computeScore={computeScore}
+              aQuestion={aQuestion}
+              answers={answers}
+              correct={correct}
+              key={_id}
+              index={index}
+            />
+          )
+        )}
+        {isFinished && <p>Score: {score}</p>}
 
         <button
           disabled={!isAnsweredAll}

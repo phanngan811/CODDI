@@ -6,7 +6,6 @@ import NavAdmin from "./nav/navAdmin";
 import ListLesson from "./lesson/listCourse.component";
 import { useState } from "react";
 import courseService from "../services/course.service";
-import "./course.css";
 export default class Course extends Component {
   constructor(props) {
     super(props);
@@ -198,7 +197,8 @@ export default class Course extends Component {
                 </div>
               </div>
 
-              <div id="course_menu" className="card w-50">
+              {/* <div className="container bg-danger"> */}
+              <div id="course_menu" className="card" style={{width: "400px"}}>
                 <div className="card-title d-flex justify-content-center pt-4">
                   <h2>{currentCourse.title} course</h2>
                 </div>
@@ -218,13 +218,14 @@ export default class Course extends Component {
                       data-bs-toggle="modal"
                       data-bs-target="#edit_course"
                     >
-                      Edit course information
+                      Update course
                     </button>
                   </div>
                 </div>
               </div>
+              {/* </div> */}
 
-              <div id="view_lesson" className="card p-4 w-50 mt-4">
+              <div id="view_lesson" className="card p-4 mt-4" style={{width: "400px"}} >
                 <h4>{currentCourse.title} lessons</h4>
                 <ListLesson id={this.props.match.params.id} />
               </div>

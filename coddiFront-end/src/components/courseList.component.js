@@ -52,11 +52,11 @@ export default class CourseList extends Component {
     const { courses, currentCourse, currentIndex } = this.state;
     return (
       <div>
-        <NavAdmin/>
-        <div className="pt-4 pb-3">
-          <div className="container bg-white w-50 pb-4 border rounded">
-            <h4 className="pt-2">Tutorials List</h4>
-            <ul className="list-group">
+        <NavAdmin />
+        <div className="container p-4 d-flex flex-row align-items-start">
+          <div id="course_list" className="me-4" style={{ flex: "1" }}>
+            <h4 className="pt-2">Courses</h4>
+            <ol className="list-group list-group-numbered">
               {courses &&
                 courses.map((course, index) => (
                   <li
@@ -67,34 +67,37 @@ export default class CourseList extends Component {
                     onClick={() => this.setActiveCourse(course, index)}
                     key={index}
                   >
-                    {index+1 + ". " + course.title}
+                    {course.title}
                   </li>
                 ))}
-            </ul>
+            </ol>
           </div>
-          <div className="container bg-white w-50 pb-4 pt-4 border rounded mt-3 mb-3">
+          <div
+            id="course_infor"
+            className="card p-4"
+            style={{ flex: "3", height: "300px" }}
+          >
             {currentCourse ? (
-              <div>
-                <h4>Tutorial</h4>
-                <div>
-                  <label>
-                    <strong>Title:</strong>
-                  </label>{" "}
-                  {currentCourse.title}
+              <div className="container">
+                <h4 className="form-title pb-2">Course information</h4>
+                <div className="form-body">
+                  <div className="form-group">
+                    <h5>Title:</h5>
+                    <p>{currentCourse.title}</p>
+                  </div>
+                  <div className="form-group">
+                    <h5>Description:</h5>
+                    <p>{currentCourse.description}</p>
+                  </div>
                 </div>
-                <div>
-                  <label>
-                    <strong>Description:</strong>
-                  </label>{" "}
-                  {currentCourse.description}
+                <div className="form-footer">
+                  <Link
+                    to={"/admin/course/" + currentCourse._id}
+                    className="btn btn-warning"
+                  >
+                    Edit
+                  </Link>
                 </div>
-
-                <Link
-                  to={"/admin/course/" + currentCourse._id}
-                  className="btn btn-warning mt-4"
-                >
-                  Edit
-                </Link>
               </div>
             ) : (
               <div>

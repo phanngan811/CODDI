@@ -3,6 +3,7 @@ import { useState } from "react";
 
 function Question({
   aQuestion,
+  description,
   answers,
   correct,
   computeScore,
@@ -36,6 +37,21 @@ function Question({
       );
     return <div>{newText}</div>;
   }
+  function shuffle(array) {
+    return array.sort(() => Math.random() - 0.5);
+  }
+  function TextTransform(props) {
+    const text = props.stringText;
+    const newText = text.split('\\n').map(
+      str => <p>
+        {str.split('\\t').map(
+          subStr => <span>&emsp;{subStr}</span>
+        )}
+        </p>
+      );
+    return <div>{newText}</div>;
+  }
+
   return (
     <div className="container mt-4 p-4 border rounded bg-white">
       {"Question " + (index + 1) + ": "}<TextTransform stringText={aQuestion}></TextTransform>
@@ -46,7 +62,7 @@ function Question({
             disabled={answered}
             className={
               "btn btn-outline-primary w-100 text-start " +
-              (text === selected && !isFinished ? "btn-secondary" : "") +
+              (text === selected && !isFinished ? "bg-secondary text-white" : "") +
               (correct === selected &&
               answered &&
               selected === text &&
@@ -69,6 +85,7 @@ function Question({
         </div>
       ))}
       {isFinished && <p>{message}</p>}
+      {isFinished && <p className="p-4 rounded" style={{backgroundColor: "#4DD4AC"}}>Explaination: <TextTransform stringText={description}/></p>}
     </div>
   );
 }

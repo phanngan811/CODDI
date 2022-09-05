@@ -49,6 +49,7 @@ exports.getQuestions = (req, res) => {
       });
     });
 };
+
 exports.getAllQuestionsLesson = (req, res) => {
   Question.find({ lesson: req.params.lessonId })
     .then((questionLesson) => {
@@ -90,10 +91,11 @@ exports.getAllQuestionCourse = (req, res) => {
     },
   ])
     .then((aQuestion) => {
+      aQuestion.sort(() => Math.random() - 0.5);
       res.status(200).json({
         success: true,
         message: `More on ${aQuestion.title}`,
-        Question: aQuestion,
+        Question: aQuestion.slice(0, 15),
       });
     })
     .catch((err) => {
