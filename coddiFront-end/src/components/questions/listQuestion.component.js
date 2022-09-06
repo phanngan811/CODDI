@@ -80,9 +80,8 @@ export default function ListQuestion({ id }) {
 
   return (
     <div>
-      <NavAdmin />
       <div className="conatiner d-flex flex-column justify-content-center align-items-center p-4">
-        <h2>Test</h2>
+        <h2>Time to test</h2>
         {questions.map(
           ({ aQuestion, description, answers, correct, _id }, index) => (
             <Question

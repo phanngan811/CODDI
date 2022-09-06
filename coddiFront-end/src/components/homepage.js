@@ -125,7 +125,7 @@ function homepage() {
         <div className="d-flex flex-column align-items-center justify-content-center text-white">
           <div className="text-uppercase fs-1 fw-bolder">PURSUIT YOUR PROGRAMMING PASSION !</div>
           <div className="fs-2 fw-bolder">Register and join the with us</div>
-          <div className="pt-4"><Link className="btn btn-danger p-4 pt-2 pb-2" to={'/login'}>Join now</Link></div>
+          <div className="pt-4"><Link className="btn btn-danger p-4 pt-2 pb-2" to={'/register'}>Join now</Link></div>
           
         </div>
       </div>
