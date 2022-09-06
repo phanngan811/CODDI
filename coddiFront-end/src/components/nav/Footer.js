@@ -40,20 +40,16 @@ function Footer() {
             <h5 className="text-uppercase">Navigation</h5>
             <ul className="list-unstyled">
               <li>
-                <Link to="/home" className="nav-link text-light text-light">
+                <Link to="/homepage" className="nav-link text-light text-light">
                   Home
                 </Link>
               </li>
               <li>
-                <Link to="/tutorials" className="nav-link text-light">
+                <Link to="/home" className="nav-link text-light">
                   Tutorials
                 </Link>
               </li>
-              <li>
-                <Link to="/discuss" className="nav-link text-light">
-                  Discuss
-                </Link>
-              </li>
+             
             </ul>
           </div>
         </div>
