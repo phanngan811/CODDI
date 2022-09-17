@@ -92,8 +92,8 @@ export default class BoardAdmin extends Component {
         <div className="container pt-4 w-50">
           <div className="container">
             {this.state.submitted ? (
-              <div className="card">
-                <h4 className="card-title">You submitted successfully!</h4>
+              <div className="card p-4">
+                <h4 className="card-title text-center">You submitted successfully!</h4>
                 <button className="btn btn-success" onClick={this.newCourse}>
                   Add
                 </button>
