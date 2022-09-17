@@ -95,7 +95,7 @@ export default class BoardAdmin extends Component {
               <div className="card p-4">
                 <h4 className="card-title text-center">You submitted successfully!</h4>
                 <button className="btn btn-success" onClick={this.newCourse}>
-                  Add
+                  Go back
                 </button>
               </div>
             ) : (
